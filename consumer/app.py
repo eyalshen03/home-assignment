@@ -32,12 +32,15 @@ try:
         if msg.error():
             if msg.error().code() != KafkaError._PARTITION_EOF:
                 print(msg.error())
-
+            
             continue
 
         # Process the message (you can add your image analysis logic here)
         image_id = msg.value().decode('utf-8')
+        #
         print(f"Received message: {image_id}")
+        image = open(f"/app/uploaded_images/{image_id}.png")
+        # TODO: AI model
 
 except Exception as e:
     print(f"Failed to run consumer {e}")

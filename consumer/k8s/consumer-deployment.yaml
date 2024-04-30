@@ -24,3 +24,10 @@ spec:
         env:
           - name: PYTHONUNBUFFERED
             value: "1"
+        volumeMounts:
+          - name: uploaded-images-webserver
+            mountPath: /app/uploaded_images
+      volumes:
+        - name: uploaded-images-webserver
+          persistentVolumeClaim:
+            claimName: uploaded-images-webserver
