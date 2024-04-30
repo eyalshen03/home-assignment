@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webserver-deployment
+  namespace: signalpet
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webserver
+  template:
+    metadata:
+      labels:
+        app: webserver
+    spec:
+      containers:
+        - name: webserver
+          image: eyalshendevops/devops_utils:webserver
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+          volumeMounts:
+            - name: uploaded-images-webserver
+              mountPath: /app/uploaded_images
+      volumes:
+        - name: uploaded-images-webserver
+          persistentVolumeClaim:
+            claimName: uploaded-images-webserver
+

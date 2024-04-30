@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: image-consumer
+  namespace: signalpet
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: image-consumer
+  template:
+    metadata:
+      labels:
+        app: image-consumer
+    spec:
+      containers:
+      - name: image-consumer
+        image: eyalshendevops/devops_utils:consumer
+        imagePullPolicy: Always
+        command: 
+         - sh
+         - -c
+        args: ["python app.py"]
+        env:
+          - name: PYTHONUNBUFFERED
+            value: "1"

@@ -1,0 +1,25 @@
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: uploaded-images-webserver
+# spec:
+#   capacity:
+#     storage: 1Gi
+#   accessModes:
+#     - ReadWriteOnce
+#   # hostPath:
+#   #   path: "/home/eyalsh/SignalPet/images"
+
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: uploaded-images-webserver
+#   namespace: signalpet
+# spec:
+#   accessModes:
+#     - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 1Gi
+
